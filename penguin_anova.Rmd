@@ -49,5 +49,34 @@ penguins2 <- penguins %>%
 
 ```{r}
 
+hists <- ggplot(penguins2, aes(x = flipper_length)) +
+  geom_histogram(aes(fill = common_name)) +
+  facet_wrap(~ common_name)
+
+hists
+
+qqplot <- ggplot(penguins2, aes(sample = flipper_length)) +
+  geom_qq() +
+  facet_wrap(~ common_name)
+qqplot
+```
+
+```{r}
+# levies tests for equal variance (when groups > 2), otherwise use the f test
+
+# H0: variances are equal
+# H1: variances are unequal
+
+penguin_levene <- leveneTest(flipper_length ~ common_name, data = penguins2) # as a function of flipper length grouped by common_anme 
+penguin_levene
+
+# variances are just slightly equal
+
+
+penguin_vars <- penguins2 %>%
+  group_by(common_name) %>%
+  summarize(
+    variance = var(flipper_length)
+  )
 ```
 
