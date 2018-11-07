@@ -80,3 +80,30 @@ penguin_vars <- penguins2 %>%
   )
 ```
 
+
+3. one way anova (single factor)
+single factor: common_name (species)
+number of levels in the factor (chinstrap...)
+rangom variable: clipper length
+
+is there a significant differences in mean flipper length across the three species
+
+```{r}
+penguin_aov <- aov(flipper_length ~ common_name, data = penguins2)
+summary(penguin_aov) # there is a significat difference in means between at least two species
+
+
+# at least two samples were taken from pops with different means.
+
+# in paper format
+# there is a significant difference in mean flipper 
+# mean flipper lengths for adelie (mean sd n), gentoo, and chinstrap penguins are significantly different (f(df) = statistic, p < 0.001, alpha = 0.05)
+```
+
+Post hoc testing using Tukeys HSD
+```{r}
+penguin_ph <- TukeyHSD(penguin_aov)
+penguin_ph
+```
+
+Mean flipper lengths for penguins are all significently sifferent from each other (F(df) = statistic, p < 0.001, alpha = 0.05, with post-hoc Tukey's HSD, alpha = 0.05)
