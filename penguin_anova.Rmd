@@ -107,3 +107,5 @@ penguin_ph
 ```
 
 Mean flipper lengths for penguins are all significently sifferent from each other (F(df) = statistic, p < 0.001, alpha = 0.05, with post-hoc Tukey's HSD, alpha = 0.05)
+
+
